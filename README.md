@@ -1,6 +1,6 @@
 ### Pokemon Pokedex
 
-![cover image](./images/cover.png)
+![cover image](../public/images/cover.png)
 
 Installing Tailwind
 ```
