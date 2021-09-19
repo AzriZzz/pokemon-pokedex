@@ -3,10 +3,14 @@ import Head from "next/head";
 import Pokemon from "../components/Pokemon";
 import Image from "next/image";
 import { IHomeProps } from "../model/index.interface";
+import Search from "../components/Search";
+import { useState } from "react";
 
 export default function Home({ pokemons }: IHomeProps) {
+  const [ search, setSearch] = useState<string>('');
+
   return (
-    <div className='bg-center bg-cover bg-hero-pattern'>
+    <div className="bg-center bg-cover bg-hero-pattern">
       <Head>
         <title>Pokedex</title>
         <meta
@@ -40,6 +44,8 @@ export default function Home({ pokemons }: IHomeProps) {
       </div>
 
       <section className="mx-auto pokemons-list max-w-screen-2xl">
+        <Search passSearch={setSearch} />
+
         <div className="grid items-center justify-center grid-cols-2 text-center md:grid-cols-3 lg:grid-cols-4">
           {pokemons.map((pokemon) => (
             <Pokemon key={pokemon.name} pokemon={pokemon} />

@@ -6,7 +6,7 @@ import Image from "next/image";
 const Pokemon: React.FC<{ pokemon: IPokemon }> = ({ pokemon }) => {
   return (
     <div className="flex items-center justify-center w-full">
-      <div className="w-64 py-5 transition ease-out bg-white border-2 border-gray-200 rounded-md shadow-md cursor-pointer m-7 hover:shadow-lg">
+      <div className="w-64 py-5 transition ease-out bg-white border-2 border-gray-200 rounded-md shadow-md cursor-pointer m-7 hover:shadow-lg hover:w-12">
         <div>
           <Image
             src={pokemon.image}
@@ -17,7 +17,7 @@ const Pokemon: React.FC<{ pokemon: IPokemon }> = ({ pokemon }) => {
             objectFit="contain"
           />
         </div>
-        <h1 className="text-sm text-center uppercase md:text-xl md:font-semibold">
+        <h1 className="text-sm text-center uppercase transition ease-in md:text-xl md:font-semibold hover:text-red-500">
           <span className="relative hidden pr-2 md:inline-block top-1">
             <Image
               src="/images/pokeball.png"
