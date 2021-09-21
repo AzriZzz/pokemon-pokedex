@@ -15,7 +15,7 @@ function Search(props: any) {
 
   return (
     <div>
-      <div className="container flex flex-col items-center justify-center pb-3 sm:px-6 lg:px-8">
+      <div className="container flex flex-col items-center justify-center pb-3 mx-auto sm:px-6 lg:px-8">
         <div className="relative">
           <input
             id="title"

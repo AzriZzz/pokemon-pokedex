@@ -57,8 +57,8 @@ export default function Home({ pokemons }: IHomeProps) {
 
         {pokemonList.length ? (
           <div className="grid items-center justify-center grid-cols-2 text-center md:grid-cols-3 lg:grid-cols-4">
-            {pokemonList.map((pokemon) => (
-              <Pokemon key={pokemon.name} pokemon={pokemon} />
+            {pokemonList.map((pokemon, index) => (
+              <Pokemon key={pokemon.name} pokemon={pokemon} index={index + 1} />
             ))}
           </div>
         ) : (
