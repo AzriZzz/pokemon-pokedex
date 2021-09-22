@@ -4,10 +4,15 @@ import { IPokemon } from "../model/index.interface";
 import Image from "next/image";
 import Link from "next/link";
 
-const Pokemon: React.FC<{ pokemon: IPokemon, index:number }> = ({ pokemon, index }) => {
+const Pokemon: React.FC<{
+  pokemon: IPokemon;
+  index: number;
+  pokemonId: number;
+}> = ({ pokemon, index, pokemonId }) => {
   return (
     <div className="flex items-center justify-center w-full">
-      <Link href={`/pokemon/${index}`}>
+      {/* <Link href={`/pokemon/${index}`}> */}
+      <Link href={`/pokemon?id=${pokemonId}`}>
         <div className="w-64 py-5 transition ease-out bg-white border-2 border-gray-200 rounded-md shadow-md cursor-pointer m-7 hover:shadow-lg hover:w-12">
           <div>
             <Image

@@ -58,7 +58,12 @@ export default function Home({ pokemons }: IHomeProps) {
         {pokemonList.length ? (
           <div className="grid items-center justify-center grid-cols-2 text-center md:grid-cols-3 lg:grid-cols-4">
             {pokemonList.map((pokemon, index) => (
-              <Pokemon key={pokemon.name} pokemon={pokemon} index={index + 1} />
+              <Pokemon
+                key={pokemon.name}
+                pokemon={pokemon}
+                index={index + 1}
+                pokemonId={pokemon.pokemonId}
+              />
             ))}
           </div>
         ) : (
@@ -86,7 +91,8 @@ export async function getStaticProps(context: GetStaticPropsContext) {
       const paddedId = ("00" + (index + 1)).slice(-3);
 
       const image = `https://assets.pokemon.com/assets/cms2/img/pokedex/detail/${paddedId}.png`;
-      return { ...(pokeman as {}), image };
+      const pokemonId = parseInt(paddedId);
+      return { ...(pokeman as {}), image, pokemonId };
     });
     return {
       props: { pokemons },

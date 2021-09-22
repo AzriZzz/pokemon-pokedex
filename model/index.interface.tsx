@@ -1,10 +1,10 @@
-
 export interface IHomeProps {
-  pokemons: IPokemon[]
+  pokemons: IPokemon[];
 }
 
-export interface IPokemon  {
-    image: string,
-    url: string,
-    name: string
+export interface IPokemon {
+  image: string;
+  url: string;
+  name: string;
+  pokemonId: number;
 }
