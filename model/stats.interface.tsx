@@ -3,6 +3,7 @@
 }export interface IPokemonData {
   image: string;
   name: string;
+  id: number;
   stats?: (StatsEntity)[] | null;
   types?: (TypesEntity)[] | null;
 }

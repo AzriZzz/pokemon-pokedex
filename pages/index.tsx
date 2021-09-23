@@ -30,6 +30,8 @@ export default function Home({ pokemons }: IHomeProps) {
 
         <meta property="og:image" content="/images/cover.png" />
         <meta property="og:title" content='Pokemon Pokedex' />
+        <meta property="og:url" content="https://pokemon-pokedex-omega.vercel.app/"/>
+
         <meta
           property="og:description"
           content='This page shows the first 151 pokemon that was released in the 1st Generation'

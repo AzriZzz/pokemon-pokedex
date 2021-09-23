@@ -7,7 +7,7 @@ import { useRouter } from "next/router";
 
 const SelectedPokemon = ({ pokemonData }: IPokemonProps) => {
   const router = useRouter();
-  const { image, stats, types } = pokemonData;
+  const { image, stats, types, id } = pokemonData;
   const loweCase = pokemonData.name.toLowerCase()
   const name = pokemonData.name.charAt(0).toUpperCase() + loweCase.slice(1);
 
@@ -35,6 +35,8 @@ const SelectedPokemon = ({ pokemonData }: IPokemonProps) => {
 
         <meta property="og:image" content={image} />
         <meta property="og:title" content={`Pokemon: ${name}`} />
+        <meta property="og:url" content={`https://pokemon-pokedex-omega.vercel.app/pokemon?id=${id}`}/>
+
         <meta
           property="og:description"
           content={`${name} is a pokemon that's been released from 1st Pokemon Generation`}
@@ -130,7 +132,8 @@ export async function getServerSideProps(pageContext: { query: { id: number; }; 
       image: pokemonInfo.image,
       name,
       stats,
-      types
+      types,
+      id
     }
     return {
       props: { pokemonData },
