@@ -1,25 +1,34 @@
-### Pokemon Pokedex
+# Pokemon Pokedex
 
 ![cover image](./public/images/cover.png)
+<br>
+<br>
 
-Installing Tailwind
-```
-npm install -D tailwindcss@latest postcss@latest autoprefixer@latest
-```
+## Technology Used
 
-Creating configuration files
-```
-npx tailwindcss init -p
-```
+1. Next.js
+2. Tailwindcss
+3. Typescript
+<br>
+<br>
 
-
-Installing Typescript
+## How to start the project ?
 
 ```
-touch tsconfig.json
+npm install
+npm run dev
 ```
+<br>
 
-Run below command
-```
-npm i --save-dev typescript @types/react @types/node
-```
+## API used
+Website - https://pokeapi.co/
+
+API Endpoint - https://pokeapi.co/api/v2/pokemon?limit=151  
+- 1st Generation Pokemon
+
+<br>
+<br>
+
+## Typescript Definition
+Website - https://jvilk.com/MakeTypes/
+- Helps to create type definition easier when preparing types for data that has many information.

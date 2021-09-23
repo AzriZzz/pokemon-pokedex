@@ -3,13 +3,13 @@ import Head from "next/head";
 import Header from "../components/Header";
 import Image from "next/image";
 import { IPokemonProps } from "../model/stats.interface";
-import Link from "next/link";
 import { useRouter } from "next/router";
 
-const SelectedPokemon = ({ pokemonInfo }: any) => {
+const SelectedPokemon = ({ pokemonData }: IPokemonProps) => {
   const router = useRouter();
-  const { image, name, stats, types } = pokemonInfo;
-  const metaStats = stats.map((stat: any, index: number) => ({
+  const { image, name, stats, types } = pokemonData;
+
+  const metaStats = stats?.map((stat, index) => ({
     index: index,
     statName: stat.stat.name,
     url: stat.stat.url,
@@ -17,7 +17,7 @@ const SelectedPokemon = ({ pokemonInfo }: any) => {
     effort: stat.effort,
   }));
 
-  const metaTypes = types.map((type: any) => ({
+  const metaTypes = types?.map((type) => ({
     index: type.slot,
     type: type.type.name,
   }));
@@ -25,11 +25,26 @@ const SelectedPokemon = ({ pokemonInfo }: any) => {
   return (
     <div>
       <Head>
-        <title>Pokedex</title>
+        <title>Pokemon: {name}</title>
         <meta
           name="description"
-          content="Build with Next.js, Tailwind, Typescript"
+          content={`${name} is a pokemon that's been released from 1st Pokemon Generation`}
         />
+
+        <meta property="og:image" content={image} />
+        <meta property="og:title" content={`Pokemon: ${name}`} />
+        <meta
+          property="og:description"
+          content={`${name} is a pokemon that's been released from 1st Pokemon Generation`}
+        />
+
+        <meta property="twitter:image" content={image} />
+        <meta property="twitter:title" content={`Pokemon: ${name}`} />
+        <meta
+          property="twitter:description"
+          content={`${name} is a pokemon that's been released from 1st Pokemon Generation`}
+        />  
+
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
@@ -54,8 +69,8 @@ const SelectedPokemon = ({ pokemonInfo }: any) => {
             </h1>
             <div className="flex flex-col justify-between h-auto">
               <div>
-                {metaStats.map(({ index, statName, base_stat }) => (
-                  <div key={index} className="pt-2">
+                {metaStats?.map(({ statName, base_stat }: { statName: string, base_stat: number}) => (
+                  <div key={statName} className="pt-2">
                     <ul>
                       <li>
                         <span className="font-bold uppercase">
@@ -71,7 +86,7 @@ const SelectedPokemon = ({ pokemonInfo }: any) => {
                 <span className="text-2xl font-semibold capitalize ">
                   Type :
                 </span>
-                {metaTypes.map(({ index, type }) => (
+                {metaTypes?.map(({ index, type }: { index:number, type: string}) => (
                   <span
                     key={index}
                     className="pt-2 text-2xl font-semibold capitalize"
@@ -100,15 +115,23 @@ const SelectedPokemon = ({ pokemonInfo }: any) => {
 
 export default SelectedPokemon;
 
-export async function getServerSideProps({ query }) {
-  const id = query.id;
+export async function getServerSideProps(pageContext: { query: { id: number; }; }) {
+  const id = pageContext.query.id;
   try {
     const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`);
     const pokemonInfo = await res.json();
     const paddedId = ("00" + id).slice(-3);
     pokemonInfo.image = `https://assets.pokemon.com/assets/cms2/img/pokedex/detail/${paddedId}.png`;
+
+    const { name, stats, types } = pokemonInfo;
+    const pokemonData = {
+      image: pokemonInfo.image,
+      name,
+      stats,
+      types
+    }
     return {
-      props: { pokemonInfo },
+      props: { pokemonData },
     };
   } catch (err) {
     console.error(err);

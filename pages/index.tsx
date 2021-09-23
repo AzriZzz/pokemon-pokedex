@@ -23,9 +23,23 @@ export default function Home({ pokemons }: IHomeProps) {
       <Head>
         <title>Pokedex</title>
         <meta
-          name="description"
-          content="Build with Next.js, Tailwind, Typescript"
+          name="Pokemon Pokedex"
+          content='This page shows the first 151 pokemon that was released in the 1st Generation'
         />
+
+        <meta property="og:image" content="/images/cover.png" />
+        <meta property="og:title" content='Pokemon Pokedex' />
+        <meta
+          property="og:description"
+          content='This page shows the first 151 pokemon that was released in the 1st Generation'
+        />
+
+        <meta property="twitter:image" content="/images/cover.png" />
+        <meta property="twitter:title" content="Pokemon Pokedex" />
+        <meta
+          property="twitter:description"
+          content='This page shows the first 151 pokemon that was released in the 1st Generation'
+        />  
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
