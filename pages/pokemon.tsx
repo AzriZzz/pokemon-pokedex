@@ -71,7 +71,7 @@ const SelectedPokemon = ({ pokemonData }: IPokemonProps) => {
             </h1>
             <div className="flex flex-col justify-between h-auto">
               <div>
-                {metaStats?.map(({ statName, base_stat }: { statName: string, base_stat: number}) => (
+                {metaStats?.map(({ statName, base_stat }) => (
                   <div key={statName} className="pt-2">
                     <ul>
                       <li>
@@ -88,7 +88,7 @@ const SelectedPokemon = ({ pokemonData }: IPokemonProps) => {
                 <span className="text-2xl font-semibold capitalize ">
                   Type :
                 </span>
-                {metaTypes?.map(({ index, type }: { index:number, type: string}) => (
+                {metaTypes?.map(({ index, type }) => (
                   <span
                     key={index}
                     className="pt-2 text-2xl font-semibold capitalize"
