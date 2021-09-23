@@ -7,7 +7,9 @@ import { useRouter } from "next/router";
 
 const SelectedPokemon = ({ pokemonData }: IPokemonProps) => {
   const router = useRouter();
-  const { image, name, stats, types } = pokemonData;
+  const { image, stats, types } = pokemonData;
+  const loweCase = pokemonData.name.toLowerCase()
+  const name = pokemonData.name.charAt(0).toUpperCase() + loweCase.slice(1);
 
   const metaStats = stats?.map((stat, index) => ({
     index: index,
@@ -25,7 +27,7 @@ const SelectedPokemon = ({ pokemonData }: IPokemonProps) => {
   return (
     <div>
       <Head>
-        <title>Pokemon: {name}</title>
+        <title className='capitalize'>{name}</title>
         <meta
           name="description"
           content={`${name} is a pokemon that's been released from 1st Pokemon Generation`}
@@ -61,7 +63,7 @@ const SelectedPokemon = ({ pokemonData }: IPokemonProps) => {
               objectFit="contain"
             />
 
-            <h1 className="text-2xl font-semibold capitalize">{name}</h1>
+            <h1 className="text-2xl font-semibold">{name}</h1>
           </div>
           <div className="pt-10 text-center border-gray-200 md:pt-5 md:pl-5 md:border-l-4 md:text-left">
             <h1 className="pb-4 text-2xl font-semibold underline">
