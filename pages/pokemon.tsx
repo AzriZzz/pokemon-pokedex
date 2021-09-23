@@ -36,6 +36,8 @@ const SelectedPokemon = ({ pokemonData }: IPokemonProps) => {
         <meta property="og:image" content={image} />
         <meta property="og:title" content={`Pokemon: ${name}`} />
         <meta property="og:url" content={`https://pokemon-pokedex-omega.vercel.app/pokemon?id=${id}`}/>
+        <meta property="og:type" content= "website" />
+        <meta property="og:site_name" content="Pokemon Pokedex" />
 
         <meta
           property="og:description"
