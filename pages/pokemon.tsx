@@ -100,7 +100,7 @@ const SelectedPokemon = ({ pokemonData }: IPokemonProps) => {
           </div>
         </div>
 
-        <div className="flex justify-center w-full pt-28">
+        <div className="flex justify-center w-full pt-10">
           <button
             onClick={() => router.push("/")}
             className="px-10 py-2 font-semibold bg-yellow-300 border-2 border-yellow-500 rounded-md hover:bg-yellow-400 focus:bg-yellow-300"
