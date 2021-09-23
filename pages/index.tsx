@@ -5,6 +5,7 @@ import Image from "next/image";
 import { IHomeProps, IPokemon } from "../model/index.interface";
 import Search from "../components/Search";
 import { useEffect, useState } from "react";
+import Header from "../components/Header";
 
 export default function Home({ pokemons }: IHomeProps) {
   const [search, setSearch] = useState<string>("");
@@ -43,28 +44,7 @@ export default function Home({ pokemons }: IHomeProps) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <div className="flex items-center justify-center p-10">
-        <div>
-          <Image
-            src="/images/pokemon_logo.png"
-            alt="Pokemon Logo"
-            className="cursor-pointer bg-purple hover:scale-125"
-            width={500}
-            height={250}
-            objectFit="contain"
-          />
-        </div>
-        <div className="relative pl-5 top-3 lg:top-5">
-          <Image
-            src="/images/pokedex.png"
-            alt="Pokemon Logo"
-            className="relative cursor-pointer top-5"
-            width={130}
-            height={130}
-            objectFit="contain"
-          />
-        </div>
-      </div>
+      <Header />
 
       <section className="mx-auto pokemons-list max-w-screen-2xl">
         <Search passSearch={setSearch} />
