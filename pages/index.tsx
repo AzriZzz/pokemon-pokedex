@@ -12,9 +12,8 @@ export default function Home({ pokemons }: IHomeProps) {
   const [pokemonList, setPokemonList] = useState<IPokemon[]>(pokemons);
 
   useEffect(() => {
-    // filter listing according to pokemon name
     const searchTutorial = pokemons.filter((pokemon) =>
-      pokemon.name.toLowerCase().includes(search)
+      pokemon.name.toLowerCase().includes(search.toLowerCase())
     );
     setPokemonList(searchTutorial);
   }, [pokemons, search]);
@@ -25,24 +24,27 @@ export default function Home({ pokemons }: IHomeProps) {
         <title>Pokedex</title>
         <meta
           name="Pokemon Pokedex"
-          content='This page shows the first 151 pokemon that was released in the 1st Generation'
+          content="This page shows the first 151 pokemon that was released in the 1st Generation"
         />
 
         <meta property="og:image" content="/images/cover.png" />
-        <meta property="og:title" content='Pokemon Pokedex' />
-        <meta property="og:url" content="https://pokemon-pokedex-omega.vercel.app/"/>
+        <meta property="og:title" content="Pokemon Pokedex" />
+        <meta
+          property="og:url"
+          content="https://pokemon-pokedex-omega.vercel.app/"
+        />
 
         <meta
           property="og:description"
-          content='This page shows the first 151 pokemon that was released in the 1st Generation'
+          content="This page shows the first 151 pokemon that was released in the 1st Generation"
         />
 
         <meta property="twitter:image" content="/images/cover.png" />
         <meta property="twitter:title" content="Pokemon Pokedex" />
         <meta
           property="twitter:description"
-          content='This page shows the first 151 pokemon that was released in the 1st Generation'
-        />  
+          content="This page shows the first 151 pokemon that was released in the 1st Generation"
+        />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
