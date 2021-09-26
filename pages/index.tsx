@@ -6,6 +6,8 @@ import { IHomeProps, IPokemon } from "../model/index.interface";
 import Search from "../components/Search";
 import { useEffect, useState } from "react";
 import Header from "../components/Header";
+import { motion } from "framer-motion";
+import { stagger } from "../animation";
 
 export default function Home({ pokemons }: IHomeProps) {
   const [search, setSearch] = useState<string>("");
@@ -54,16 +56,20 @@ export default function Home({ pokemons }: IHomeProps) {
         <Search passSearch={setSearch} />
 
         {pokemonList.length ? (
-          <div className="grid items-center justify-center grid-cols-2 text-center md:grid-cols-3 lg:grid-cols-4">
-            {pokemonList.map((pokemon, index) => (
+          <motion.div
+            className="grid items-center justify-center grid-cols-2 text-center md:grid-cols-3 lg:grid-cols-4"
+            variants={stagger}
+            initial="initial"
+            animate="animate"
+          >
+            {pokemonList.map((pokemon) => (
               <Pokemon
                 key={pokemon.name}
                 pokemon={pokemon}
-                index={index + 1}
                 pokemonId={pokemon.pokemonId}
               />
             ))}
-          </div>
+          </motion.div>
         ) : (
           <div className="flex justify-center w-full">
             <Image

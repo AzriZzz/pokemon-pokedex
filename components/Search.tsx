@@ -4,7 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 
 function Search(props: any) {
-  const [searchInput, setSearchInput] = useState<string>("Pokemon name");
+  const [searchInput, setSearchInput] = useState<string>("Search pokemon");
 
   const onSearch = (e: any) => {
     const keyword = e.currentTarget.value;

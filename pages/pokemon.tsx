@@ -4,11 +4,13 @@ import Header from "../components/Header";
 import Image from "next/image";
 import { IPokemonProps } from "../model/stats.interface";
 import { useRouter } from "next/router";
+import { motion } from "framer-motion";
+import { fadeUp, stagger } from "../animation";
 
 const SelectedPokemon = ({ pokemonData }: IPokemonProps) => {
   const router = useRouter();
   const { image, stats, types, id } = pokemonData;
-  const loweCase = pokemonData.name.toLowerCase()
+  const loweCase = pokemonData.name.toLowerCase();
   const name = pokemonData.name.charAt(0).toUpperCase() + loweCase.slice(1);
 
   const metaStats = stats?.map((stat, index) => ({
@@ -27,7 +29,7 @@ const SelectedPokemon = ({ pokemonData }: IPokemonProps) => {
   return (
     <div>
       <Head>
-        <title className='capitalize'>{name}</title>
+        <title className="capitalize">{name}</title>
         <meta
           name="description"
           content={`${name} is a pokemon that's been released from 1st Pokemon Generation`}
@@ -35,8 +37,11 @@ const SelectedPokemon = ({ pokemonData }: IPokemonProps) => {
 
         <meta property="og:image" content={image} />
         <meta property="og:title" content={`Pokemon: ${name}`} />
-        <meta property="og:url" content={`https://pokemon-pokedex-omega.vercel.app/pokemon?id=${id}`}/>
-        <meta property="og:type" content= "website" />
+        <meta
+          property="og:url"
+          content={`https://pokemon-pokedex-omega.vercel.app/pokemon?id=${id}`}
+        />
+        <meta property="og:type" content="website" />
         <meta property="og:site_name" content="Pokemon Pokedex" />
 
         <meta
@@ -49,14 +54,24 @@ const SelectedPokemon = ({ pokemonData }: IPokemonProps) => {
         <meta
           property="twitter:description"
           content={`${name} is a pokemon that's been released from 1st Pokemon Generation`}
-        />  
+        />
 
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <Header />
-      <section className="max-w-screen-lg p-10 mx-auto">
-        <div className="grid grid-cols-1 p-10 bg-white md:grid-cols-2 rounded-xl">
+      <motion.section
+        variants={stagger}
+        initial="initial"
+        animate="animate"
+        className="max-w-screen-lg p-10 mx-auto"
+      >
+        <motion.div
+          variants={fadeUp}
+          initial="initial"
+          animate="animate"
+          className="grid grid-cols-1 p-10 bg-white md:grid-cols-2 rounded-xl"
+        >
           <div className="text-center">
             <Image
               src={image}
@@ -104,7 +119,7 @@ const SelectedPokemon = ({ pokemonData }: IPokemonProps) => {
               </div>
             </div>
           </div>
-        </div>
+        </motion.div>
 
         <div className="flex justify-center w-full pt-10">
           <button
@@ -114,14 +129,16 @@ const SelectedPokemon = ({ pokemonData }: IPokemonProps) => {
             Back
           </button>
         </div>
-      </section>
+      </motion.section>
     </div>
   );
 };
 
 export default SelectedPokemon;
 
-export async function getServerSideProps(pageContext: { query: { id: number; }; }) {
+export async function getServerSideProps(pageContext: {
+  query: { id: number };
+}) {
   const id = pageContext.query.id;
   try {
     const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`);
@@ -135,8 +152,8 @@ export async function getServerSideProps(pageContext: { query: { id: number; }; 
       name,
       stats,
       types,
-      id
-    }
+      id,
+    };
     return {
       props: { pokemonData },
     };

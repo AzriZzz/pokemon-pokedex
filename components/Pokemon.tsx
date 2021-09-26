@@ -3,15 +3,18 @@ import React from "react";
 import { IPokemon } from "../model/index.interface";
 import Image from "next/image";
 import Link from "next/link";
+import { motion } from "framer-motion";
+import { fadeUp } from "../animation";
 
 const Pokemon: React.FC<{
   pokemon: IPokemon;
-  index: number;
   pokemonId: number;
-}> = ({ pokemon, index, pokemonId }) => {
+}> = ({ pokemon, pokemonId }) => {
   return (
-    <div className="flex items-center justify-center w-full">
-      {/* <Link href={`/pokemon/${index}`}> */}
+    <motion.div
+      variants={fadeUp}
+      className="flex items-center justify-center w-full"
+    >
       <Link href={`/pokemon?id=${pokemonId}`}>
         <div className="w-64 py-5 transition ease-out bg-white border-2 border-gray-200 rounded-md shadow-md cursor-pointer m-7 hover:shadow-lg hover:w-12">
           <div>
@@ -47,7 +50,7 @@ const Pokemon: React.FC<{
           </h1>
         </div>
       </Link>
-    </div>
+    </motion.div>
   );
 };
 
