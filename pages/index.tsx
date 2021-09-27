@@ -14,10 +14,12 @@ export default function Home({ pokemons }: IHomeProps) {
   const [pokemonList, setPokemonList] = useState<IPokemon[]>(pokemons);
 
   useEffect(() => {
-    const searchTutorial = pokemons.filter((pokemon) =>
-      pokemon.name.toLowerCase().includes(search.toLowerCase())
-    );
-    setPokemonList(searchTutorial);
+    setTimeout(() => {
+      const searchTutorial = pokemons.filter((pokemon) =>
+        pokemon.name.toLowerCase().includes(search.toLowerCase())
+      );
+      setPokemonList(searchTutorial);
+    }, 500);
   }, [pokemons, search]);
 
   return (
